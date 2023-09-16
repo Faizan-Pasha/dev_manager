@@ -24,7 +24,6 @@ class MongodbState extends StateNotifier<UpdateStatusModel> {
   }
 
   void updateState() async {
-    await Future.delayed(const Duration(seconds: 2));
     state = state.copyWith(loading: true);
     final status = await MongoDBs().checkMongoDBStatus();
     state = state.copyWith(loading: false, status: status);
