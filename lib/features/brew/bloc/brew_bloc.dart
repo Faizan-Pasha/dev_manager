@@ -16,7 +16,7 @@ class BrewBloc extends Bloc<BrewEvent, BrewState> {
 
   FutureOr<void> brewInitialEvent(
       BrewEvent event, Emitter<BrewState> emit) async {
-    final brewList = await Brews().getAllAppInfo();
+    final brewList = await Brews().getBrews();
     emit(BrewLoadedState(brews: brewList));
   }
 
@@ -31,7 +31,7 @@ class BrewBloc extends Bloc<BrewEvent, BrewState> {
 
     await Brews().startService(brew.name);
 
-    final brewList = await Brews().getAllAppInfo();
+    final brewList = await Brews().getBrews();
     emit(BrewLoadedState(brews: brewList));
   }
 
@@ -46,7 +46,7 @@ class BrewBloc extends Bloc<BrewEvent, BrewState> {
 
     await Brews().stopService(brew.name);
 
-    final brewList = await Brews().getAllAppInfo();
+    final brewList = await Brews().getBrews();
     emit(BrewLoadedState(brews: brewList));
   }
 }
